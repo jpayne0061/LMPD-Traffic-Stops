@@ -1,0 +1,249 @@
+﻿@model TrafficStops.ViewModels.LookUpViewModel
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-8 col-md-offset-2 col-xs-12" id="form-section">
+            <div class="center-text">
+                <h1 id="title">LMPD Traffic Stop Data Explorer</h1>
+                <h4 id="info"><a href="#">What is this and how do I use it?</a></h4>
+            </div>
+        
+        
+            <div class="paragraph">
+                <h5>
+                    Between January 1st 2015, and March 3rd 2017, the Louisville Metro Police Dept recorded approximately 85,000 traffic stops.
+                    Of those 85,000 traffic stops, 24.1% resulted in a warning, while the remaining 75.9% resulted in a citation being issued.
+                    Along with the result of the traffic stop, the LMPD also records extra data about the driver being stopped and the officer
+                    performing the traffic stop, such as age, race and gender.<br /><br />
+
+                    The tool below allows you to see the percentage of stops resulting
+                    in a warning or citation according to the gender, race and age of the officer/driver invloved. For example, you can specify that
+                    that you want to search for all traffic stops involving a white, female officer and drivers over the age of 60. After you have
+                    specified the parameters you're interested in, click on the "Get Stats" button and see what percentage of the stops resulted in
+                    a warning or citation.<br /><br />
+
+                    The LMPD offers their data to the public, available here: <a href="https://data.louisvilleky.gov/dataset/lmpd-stops-data">https://data.louisvilleky.gov/dataset/lmpd-stops-data</a>
+                </h5>
+            </div>
+
+            <div class="row center-div" id="demo-form-section">
+                <div class="col-md-6 col-xs-12">
+
+                    <div>
+                        <h2 class="bold-it">Driver Demographics</h2>@*<span class="glyphicon glyphicon-list" id="driver-params-button"></span>*@
+                    </div>
+
+                    <div id="driver-params">
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.RaceDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.Races.Values), "All Races/unspecified", new { @class = "form-control", id = "drop-race-driver" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.GenderDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.Genders.Values), "Both Genders/unspecified", new { @class = "form-control", id = "drop-gender-driver" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.AgeDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.DriverAges.Values), "All Ages/unspecified", new { @class = "form-control", id = "drop-age-driver" })
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-xs-12">
+                    <h2 class="bold-it">Officer Demographics</h2>@*<span class="glyphicon glyphicon-list" id="officer-params-button"></span>*@
+
+
+                    <div id="officer-params">
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.RaceDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.Races.Values), "All Races/unspecified", new { @class = "form-control", id = "drop-race-officer" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.GenderDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.Genders.Values), "Both Genders/unspecified", new { @class = "form-control", id = "drop-gender-officer" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StopVars.AgeDriver)
+                            @Html.DropDownListFor(m => m.StopVars.RaceOfficer, new SelectList(Model.OfficerAges.Values), "All Ages/unspecified", new { @class = "form-control", id = "drop-age-officer" })
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+                <div class="center-div" id="result-section">
+                    <h2 id="result-header" class="bold-it">Traffic Stop Outcome</h2><span id="result-validation">You must select a result</span>
+
+
+                    <div>
+                        <label><input type="radio" value="WARNING" name="result">Warning</label>
+                    </div>
+                    <div>
+                        <label><input type="radio" value="CITATION ISSUED" name="result">Citation Issued</label>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" id="submit-query">Get Traffic Stop Data</button>
+
+
+
+                </div>
+                
+
+            
+
+
+
+
+
+       
+
+        
+
+        </div>
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <div id="data-load"></div>
+            <div id="query-results">
+
+                @*<div class="">
+                    <div><h3>Parameters you selected:</h3></div>
+                </div>*@
+                <div id="js-results-parameter">
+                    <h1>Percentage of stops ending with<span id="heading-for-graph"></span></h1>
+                    <div id="records-found"></div>
+                    <div id="axis-marker">100%</div>
+                    <div class="inline-div" id="axis"></div>
+                    <div class="inline-div" id="average-bar"><div id="average-num"></div></div>
+                    <div class="inline-div" id="query-bar"><div id="query-num"></div></div>
+
+                    <div id="legend-container">
+                        <div>
+                            <div class="inline-div" id="query-legend"></div><span class="legend-text">Your Query*</span>
+                        </div>
+
+                        <div>
+                            <div class="inline-div" id="average-legend"></div><span class="legend-text">All Stops</span>
+                        </div>
+                    </div>
+
+                    <div id="result-parameters">
+
+
+                    </div>
+
+
+                </div>
+                <div class="hide-prop" id="download-section">
+                    @using (Html.BeginForm("Download", "Home"))
+                    {
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.RaceDriver)
+                            @Html.TextBoxFor(m => m.StopVars.RaceDriver, new { @class = "form-control", id = "dl-race-driver", @Name="RaceDriver"})
+
+                        </div>
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.GenderDriver)
+                            @Html.TextBoxFor(m => m.StopVars.GenderDriver, new { @class = "form-control", id = "dl-gender-driver", @Name="GenderDriver" })
+
+                        </div>
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.AgeDriver)
+                            @Html.TextBoxFor(m => m.StopVars.AgeDriver, new { @class = "form-control", id = "dl-age-driver", @Name="AgeDriver" })
+
+                        </div>
+
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.RaceOfficer)
+                            @Html.TextBoxFor(m => m.StopVars.RaceOfficer, new { @class = "form-control", id = "dl-race-officer", @Name="RaceOfficer" })
+
+                        </div>
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.GenderOfficer)
+                            @Html.TextBoxFor(m => m.StopVars.GenderOfficer, new { @class = "form-control", id = "dl-gender-officer", @Name="GenderOfficer" })
+
+                        </div>
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.AgeOfficer)
+                            @Html.TextBoxFor(m => m.StopVars.AgeOfficer, new { @class = "form-control", id = "dl-age-officer", @Name="AgeOfficer" })
+
+                        </div>
+                        <div class="form-group hide-prop">
+                            @Html.LabelFor(m => m.StopVars.Result)
+                            @Html.TextBoxFor(m => m.StopVars.Result, new { @class = "form-control", id = "dl-result", @Name="Result" })
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary" id="submit-for-download">Download CSV</button>
+                        <span class="btn btn-primary" id="search-again">Search Again</span>
+
+                    }
+                    
+
+                </div>
+
+            </div>
+            @*<div id="see-this-data"><a href="#">See this data </a></div>*@
+
+        </div>
+
+    </div>
+
+</div>
+
+@*<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>TYPE_OF_STOP</th>
+            <th>CITATION_CONTROL_NUMBER</th>
+            <th>ACTIVITY RESULTS</th>
+            <th>OFFICER_GENDER</th>
+            <th>OFFICER_RACE</th>
+            <th>OFFICER_AGE_RANGE</th>
+            <th>ACTIVITY_DATE</th>
+            <th>ACTIVITY_TIME</th>
+            <th>ACTIVITY_LOCATION</th>
+            <th>ACTIVITY_DIVISION</th>
+            <th>ACTIVITY_BEAT</th>
+            <th>DRIVER_GENDER</th>
+            <th>DRIVER_RACE </th>
+            <th>DRIVER_AGE_RANGE </th>
+            <th>NUMBER OF PASSENGERS </th>
+            <th>WAS_VEHCILE_SEARCHED </th>
+            <th>REASON_FOR_SEARCH </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>*@
+
+
+

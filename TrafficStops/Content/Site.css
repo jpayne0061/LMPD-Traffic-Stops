@@ -1,0 +1,253 @@
+﻿body {
+    
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #4499D0;
+    /*color: #0C1C27;*/
+    color: #fff;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#title {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#info a{
+    color: #fff;
+}
+
+.bold-it {
+    font-weight: 500;
+}
+
+
+h2, h3 {
+    display: inline-block;
+}
+
+#result-header {
+    display: block;
+}
+
+.option-container {
+    display: none;
+}
+
+
+
+#query-results {
+    display: none;
+}
+
+
+#result-validation {
+    color: red;
+    display: none;
+}
+
+
+.results-text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+#margin-after-issued {
+    margin-bottom: 15px;
+}
+
+
+#final-ratio {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.paragraph {
+    max-width: 600px;
+    
+    display: none;
+}
+
+.glyphicon-list {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.glyphicon-list:hover {
+    cursor: pointer;
+}
+
+h5 {
+    line-height: 1.5;
+}
+
+#see-this-data {
+    cursor: pointer;
+}
+
+#table_id {
+    display: none;
+}
+
+.hide-prop {
+    display: none;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-div {
+    margin: 0 auto;
+}
+
+#result-section {
+    width: 300px;
+}
+
+#submit-query {
+    width: 300px;
+    background-color: #80C4F0;
+    border-color: #5CAFE6;
+}
+
+#submit-query:hover {
+    background-color: #A4D5F5;
+}
+
+#demo-form-section {
+    margin-top: 25px;
+    margin-bottom: 25px; 
+}
+
+.inline-div {
+    display: inline-block;
+}
+
+#axis {
+    width: 1px;
+    height: 300px;
+    background-color: #fff;;
+}
+
+#average-bar {
+    width: 80px;
+    background-color:#AFCCE0;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+}
+
+#query-bar {
+    width: 80px;
+    background-color: #204D6B;
+    position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    position: relative;
+}
+
+#query-legend {
+    width: 20px;
+    height: 20px;
+    background-color: #204D6B;
+    border-radius: 3px;
+    
+}
+
+#average-legend {
+    width: 20px;
+    height: 20px;
+    background-color:#AFCCE0;
+    border-radius: 3px;
+}
+
+#average-num {
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    color: white;
+}
+
+#query-num {
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    color: white;
+}
+
+select.form-control:hover {
+    cursor: pointer;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+#legend-container {
+    margin-top: 20px;
+}
+
+#result-parameters {
+    margin-top: 20px;
+}
+
+#submit-for-download {
+    background-color: #204D6B; 
+}
+
+#search-again {
+    background-color: #AFCCE0;
+    color: #204D6B;
+}
+
+#download-section {
+    margin-top: 20px;
+}
+
+#search-again:hover {
+    background-color: #fff;
+
+}
+
+.legend-text {
+    vertical-align: top;
+}
+
+
+#data-load {
+    display: none;
+    position: absolute;
+    width: 100%; 
+    height: 100px;
+    background: url('ring.gif') no-repeat center center;
+    
+}
+
+h5 a {
+    color: #fff;
+}
