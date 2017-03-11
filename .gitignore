@@ -237,3 +237,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/TrafficStops/App_Data/LMPD_STOPS.Context.mdf
+/TrafficStops/App_Data/LMPD_STOPS.Context_log.ldf

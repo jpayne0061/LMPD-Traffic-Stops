@@ -94,7 +94,6 @@ namespace TrafficStops.Controllers
             var rounded = Math.Round(ratio, 2);
 
 
-
             stats.Add(Math.Round((rounded * 100), 2));
             stats.Add(demoCount);
             stats.Add(resultCount);
