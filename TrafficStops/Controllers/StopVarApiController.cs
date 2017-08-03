@@ -32,7 +32,7 @@ namespace TrafficStops.Controllers
             int activityResults = 0;
 
             using (SqlConnection conn = new SqlConnection())
-            {
+            {   
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["firstDBString"].ToString();
                 conn.Open();
 
